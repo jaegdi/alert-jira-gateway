@@ -2,6 +2,8 @@ resources:
   - ../../base
   - sealedsecret-jira.yaml
 
+namespace: scp-operations-cid
+
 patches:
 - patch: |-
     apiVersion: apps/v1
@@ -15,3 +17,18 @@ patches:
           containers:
           - name: alert-jira-gateway
             image: alert-jira-gateway:cid
+- patch: |-
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: jira-gateway-config
+    data:
+      PROMETHEUS_URL: "https://prometheus-k8s-openshift-monitoring.apps.cid-scp0.sf-rz.de/api/v1/alerts"
+- patch: |-
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: image-puller-alert-jira-gateway
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      name: system:serviceaccounts:scp-operations-cid

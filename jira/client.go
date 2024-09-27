@@ -26,7 +26,7 @@ func CreateIssue(client *jira.Client, projectKey, assignee string, alert prometh
 			},
 			Summary: fmt.Sprintf("Prometheus Alert: %s", alert.Labels.Alertname),
 			Unknowns: map[string]interface{}{
-				"customfield_12345": "Plattform Services", // Ersetzen Sie "customfield_12345" durch die ID Ihres benutzerdefinierten Feldes
+				"19707": "Plattform Services",
 			},
 		},
 	}
