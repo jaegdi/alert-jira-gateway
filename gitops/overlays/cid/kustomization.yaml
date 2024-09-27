@@ -1,0 +1,17 @@
+resources:
+  - ../../base
+  - sealedsecret-jira.yaml
+
+patches:
+- path: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: alert-jira-gateway
+    spec:
+      replicas: 2
+      template:
+        spec:
+          containers:
+          - name: alert-jira-gateway
+            image: alert-jira-gateway:cid

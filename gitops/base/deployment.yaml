@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alert-jira-gateway
+  labels:
+    app: alert-jira-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alert-jira-gateway
+  template:
+    metadata:
+      labels:
+        app: alert-jira-gateway
+    spec:
+      containers:
+      - name: alert-jira-gateway
+        image: alert-jira-gateway:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/app-config
+        - name: secret-volume
+          mountPath: /etc/app-secret
+      volumes:
+      - name: config-volume
+        configMap:
+          name: jira-gateway-config
+      - name: secret-volume
+        secret:
+          secretName: jira-secret

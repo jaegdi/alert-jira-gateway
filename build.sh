@@ -1,0 +1,1 @@
+/usr/bin/podman build -t alert-jira-gateway:latest .

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jira-gateway-config
+  namespace: default
+data:
+  PROMETHEUS_URL: "http://prometheus-server/api/v1/alerts"
+  JIRA_URL: "https://your-jira-instance.atlassian.net"
+  JIRA_PROJECT_KEY: "PROJECTKEY"
+  JIRA_ASSIGNEE: "your-jira-username"

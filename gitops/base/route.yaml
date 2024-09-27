@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: alert-jira-gateway
+  labels:
+    app: alert-jira-gateway
+spec:
+  to:
+    kind: Service
+    name: alert-jira-gateway
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
