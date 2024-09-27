@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: alert-jira-gateway
-        image: alert-jira-gateway:latest
+        image: image-registry.openshift-image-registry.svc:5000/scp-images/alert-jira-gateway:v0.1
         ports:
         - containerPort: 8080
         resources:
